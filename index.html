@@ -49,7 +49,9 @@ body {
     margin: 30px auto;
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+    grid-template-columns:
+    repeat(auto-fit, minmax(280px, 1fr));
 
     gap: 20px;
 }
@@ -59,11 +61,14 @@ body {
 
     border-radius: 25px;
 
-    background: rgba(255,255,255,0.08);
+    background:
+    rgba(255,255,255,0.08);
 
-    border: 1px solid rgba(255,255,255,0.15);
+    border:
+    1px solid rgba(255,255,255,0.15);
 
-    box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    box-shadow:
+    0 20px 50px rgba(0,0,0,0.4);
 
     backdrop-filter: blur(15px);
 
@@ -80,11 +85,13 @@ body {
 
 .card h2 {
     font-size: 27px;
+
     margin: 10px 0;
 }
 
 .card p {
     color: #aeb7d9;
+
     line-height: 1.5;
 }
 
@@ -108,10 +115,16 @@ body {
     font-weight: bold;
 
     cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.play:hover {
+    transform: scale(1.03);
 }
 
 .play:active {
-    transform: scale(0.97);
+    transform: scale(0.96);
 }
 
 .footer {
@@ -132,6 +145,7 @@ body {
 
 <body>
 
+
 <div class="header">
 
 <div class="logo">
@@ -139,14 +153,17 @@ body {
 </div>
 
 <p class="tagline">
-Choose a game and challenge yourself!
+Choose your game and start playing!
 </p>
 
 </div>
 
 
+
 <div class="games">
 
+
+<!-- GUESS GAME -->
 
 <div class="card">
 
@@ -167,7 +184,7 @@ fewest attempts?
 <button class="play"
 onclick="location.href='guess.html'">
 
-PLAY GUESS MASTER
+🎯 PLAY GUESS MASTER
 
 </button>
 
@@ -175,25 +192,55 @@ PLAY GUESS MASTER
 
 
 
+<!-- MATH IQ -->
+
 <div class="card">
 
 <div class="icon">
-🧠
+🧮
 </div>
 
 <h2>
-Mind Test
+Math IQ
 </h2>
 
 <p>
-Challenge your logic, patterns and
-reasoning with a timed brain test.
+Test your math skills with quick
+questions and challenge your brain!
 </p>
 
 <button class="play"
 onclick="location.href='mind.html'">
 
-START MIND TEST
+🧠 START MATH IQ
+
+</button>
+
+</div>
+
+
+
+<!-- SNAKE -->
+
+<div class="card">
+
+<div class="icon">
+🐍
+</div>
+
+<h2>
+Snake
+</h2>
+
+<p>
+Eat the apples, grow bigger and
+try not to hit the wall or yourself!
+</p>
+
+<button class="play"
+onclick="location.href='snake.html'">
+
+🐍 PLAY SNAKE
 
 </button>
 
@@ -201,6 +248,7 @@ START MIND TEST
 
 
 </div>
+
 
 
 <div class="footer">
@@ -208,6 +256,7 @@ START MIND TEST
 🎮 Game Zone • Have fun!
 
 </div>
+
 
 </body>
 </html>
