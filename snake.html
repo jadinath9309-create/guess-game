@@ -17,10 +17,11 @@ body {
     margin: 0;
     min-height: 100vh;
 
-    background: #080b18;
+    background:
+        radial-gradient(circle at top, #263b80, transparent 45%),
+        #080b18;
 
     color: white;
-
     font-family: Arial, sans-serif;
 
     display: flex;
@@ -30,20 +31,49 @@ body {
 
 .game {
     width: 94%;
-    max-width: 430px;
-
+    max-width: 460px;
     text-align: center;
 }
 
 h1 {
-    margin-bottom: 5px;
+    margin: 15px 0 5px;
     font-size: 34px;
 }
 
 .subtitle {
-    color: #9da6c7;
+    color: #aeb7d9;
     margin-top: 0;
 }
+
+/* Difficulty */
+
+.modes {
+    display: flex;
+    gap: 8px;
+    margin: 18px 0;
+}
+
+.mode {
+    flex: 1;
+
+    padding: 11px 5px;
+
+    border: none;
+    border-radius: 12px;
+
+    background: #171e36;
+    color: #aeb7d9;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.mode.active {
+    background: #5d7cff;
+    color: white;
+}
+
+/* Score */
 
 .scoreBox {
     display: flex;
@@ -51,24 +81,27 @@ h1 {
 
     background: #151b32;
 
-    padding: 14px 20px;
+    padding: 13px 20px;
 
     border-radius: 15px;
 
-    margin: 18px 0;
+    margin-bottom: 15px;
 }
 
 .scoreBox span {
     color: #9da6c7;
+    font-size: 13px;
 }
 
 .scoreBox b {
-    font-size: 20px;
+    font-size: 21px;
 }
+
+/* Game */
 
 canvas {
     width: 100%;
-    max-width: 400px;
+    max-width: 440px;
 
     aspect-ratio: 1 / 1;
 
@@ -79,24 +112,36 @@ canvas {
     border-radius: 15px;
 
     display: block;
-
     margin: auto;
+
+    image-rendering: auto;
 
     touch-action: none;
 }
 
-.controls {
-    margin: 20px auto;
+/* Message */
 
-    width: 210px;
+.message {
+    min-height: 25px;
+
+    margin: 12px;
+
+    font-weight: bold;
+}
+
+/* Controls */
+
+.controls {
+    margin: 15px auto;
+
+    width: 220px;
 
     display: grid;
 
-    grid-template-columns: repeat(3, 65px);
+    grid-template-columns: repeat(3, 68px);
+    grid-template-rows: repeat(2, 58px);
 
-    grid-template-rows: repeat(2, 65px);
-
-    gap: 8px;
+    gap: 7px;
 
     justify-content: center;
 }
@@ -104,21 +149,22 @@ canvas {
 .controls button {
     border: none;
 
-    border-radius: 14px;
+    border-radius: 13px;
 
     background: #202945;
 
     color: white;
 
-    font-size: 25px;
-
-    font-weight: bold;
+    font-size: 23px;
 
     cursor: pointer;
+
+    touch-action: manipulation;
 }
 
 .controls button:active {
-    transform: scale(0.9);
+    transform: scale(0.92);
+    background: #303b63;
 }
 
 .up {
@@ -140,9 +186,10 @@ canvas {
     grid-row: 2;
 }
 
+/* Bottom buttons */
+
 .actions {
     display: flex;
-
     gap: 10px;
 }
 
@@ -152,7 +199,6 @@ canvas {
     padding: 14px;
 
     border: none;
-
     border-radius: 13px;
 
     background: #5d7cff;
@@ -160,20 +206,13 @@ canvas {
     color: white;
 
     font-size: 16px;
-
     font-weight: bold;
+
+    cursor: pointer;
 }
 
-.home {
-    background: #202945 !important;
-}
-
-.message {
-    min-height: 25px;
-
-    margin: 10px;
-
-    font-weight: bold;
+.actions .home {
+    background: #202945;
 }
 
 </style>
@@ -187,8 +226,33 @@ canvas {
 <h1>🐍 SNAKE</h1>
 
 <p class="subtitle">
-Eat the apples and grow!
+Choose difficulty and beat your best score!
 </p>
+
+
+<!-- Difficulty -->
+
+<div class="modes">
+
+<button class="mode active"
+onclick="setMode('easy', this)">
+EASY
+</button>
+
+<button class="mode"
+onclick="setMode('normal', this)">
+NORMAL
+</button>
+
+<button class="mode"
+onclick="setMode('hard', this)">
+HARD
+</button>
+
+</div>
+
+
+<!-- Score -->
 
 <div class="scoreBox">
 
@@ -204,31 +268,47 @@ Eat the apples and grow!
 
 </div>
 
-<canvas id="game" width="400" height="400"></canvas>
+
+<!-- Bigger map -->
+
+<canvas
+id="game"
+width="440"
+height="440">
+</canvas>
+
 
 <div class="message" id="message">
-Use the buttons to move!
+Choose a direction!
 </div>
+
+
+<!-- Mobile controls -->
 
 <div class="controls">
 
-<button class="up" onclick="changeDirection('up')">
+<button class="up"
+onclick="changeDirection('up')">
 ⬆️
 </button>
 
-<button class="left" onclick="changeDirection('left')">
+<button class="left"
+onclick="changeDirection('left')">
 ⬅️
 </button>
 
-<button class="down" onclick="changeDirection('down')">
+<button class="down"
+onclick="changeDirection('down')">
 ⬇️
 </button>
 
-<button class="right" onclick="changeDirection('right')">
+<button class="right"
+onclick="changeDirection('right')">
 ➡️
 </button>
 
 </div>
+
 
 <div class="actions">
 
@@ -245,6 +325,7 @@ onclick="location.href='index.html'">
 
 </div>
 
+
 <script>
 
 const canvas =
@@ -253,24 +334,52 @@ document.getElementById("game");
 const ctx =
 canvas.getContext("2d");
 
+
+/*
+   Bigger map:
+   Old = 20 × 20
+   New = 22 × 22
+*/
+
 const grid = 20;
 
-const tileCount =
-canvas.width / grid;
+const tileCount = 22;
 
-let snake;
 
-let apple;
+let snake = [];
 
-let direction;
+let apple = {};
 
-let nextDirection;
+let direction = "right";
+
+let nextDirection = "right";
 
 let score = 0;
 
 let gameOver = false;
 
 let gameLoop;
+
+
+/*
+   Difficulty speeds.
+
+   Easy   = 180ms
+   Normal = 130ms
+   Hard   = 90ms
+*/
+
+const speeds = {
+
+    easy: 180,
+
+    normal: 130,
+
+    hard: 90
+
+};
+
+let mode = "easy";
 
 let best =
 Number(localStorage.getItem("snakeBest")) || 0;
@@ -279,13 +388,39 @@ document.getElementById("best")
 .innerText = best;
 
 
+/* Set difficulty */
+
+function setMode(newMode, button) {
+
+    mode = newMode;
+
+    document
+    .querySelectorAll(".mode")
+    .forEach(
+        b => b.classList.remove("active")
+    );
+
+    button.classList.add("active");
+
+    restartGame();
+
+}
+
+
+/* Start */
+
 function startGame() {
 
     snake = [
-        {x: 10, y: 10},
-        {x: 9, y: 10},
-        {x: 8, y: 10}
+
+        {x: 11, y: 11},
+
+        {x: 10, y: 11},
+
+        {x: 9, y: 11}
+
     ];
+
 
     direction = "right";
 
@@ -295,24 +430,34 @@ function startGame() {
 
     gameOver = false;
 
+
     document.getElementById("score")
     .innerText = score;
+
 
     document.getElementById("message")
     .innerText =
     "Eat 🍎 and grow!";
 
+
     createApple();
+
 
     clearInterval(gameLoop);
 
-    gameLoop =
-    setInterval(update, 120);
+
+    gameLoop = setInterval(
+        update,
+        speeds[mode]
+    );
+
 
     draw();
 
 }
 
+
+/* Apple */
 
 function createApple() {
 
@@ -320,36 +465,47 @@ function createApple() {
 
         apple = {
 
-            x: Math.floor(
+            x:
+            Math.floor(
                 Math.random() * tileCount
             ),
 
-            y: Math.floor(
+            y:
+            Math.floor(
                 Math.random() * tileCount
             )
 
         };
 
     } while (
+
         snake.some(
             part =>
             part.x === apple.x &&
             part.y === apple.y
         )
+
     );
 
 }
 
 
+/* Game update */
+
 function update() {
 
     if (gameOver) return;
 
+
     direction = nextDirection;
 
+
     let head = {
+
         x: snake[0].x,
+
         y: snake[0].y
+
     };
 
 
@@ -366,13 +522,18 @@ function update() {
         head.x++;
 
 
-    // Wall collision
+    /* Wall */
 
     if (
+
         head.x < 0 ||
+
         head.x >= tileCount ||
+
         head.y < 0 ||
+
         head.y >= tileCount
+
     ) {
 
         endGame();
@@ -382,14 +543,16 @@ function update() {
     }
 
 
-    // Self collision
+    /* Self */
 
     if (
+
         snake.some(
             part =>
             part.x === head.x &&
             part.y === head.y
         )
+
     ) {
 
         endGame();
@@ -402,14 +565,18 @@ function update() {
     snake.unshift(head);
 
 
-    // Apple
+    /* Apple */
 
     if (
+
         head.x === apple.x &&
+
         head.y === apple.y
+
     ) {
 
         score++;
+
 
         document.getElementById("score")
         .innerText = score;
@@ -419,32 +586,38 @@ function update() {
 
             best = score;
 
+
             localStorage.setItem(
                 "snakeBest",
                 best
             );
+
 
             document.getElementById("best")
             .innerText = best;
 
         }
 
+
         createApple();
 
-    } else {
+    }
+
+    else {
 
         snake.pop();
 
     }
+
 
     draw();
 
 }
 
 
-function draw() {
+/* Draw */
 
-    // Background
+function draw() {
 
     ctx.fillStyle = "#111827";
 
@@ -456,10 +629,11 @@ function draw() {
     );
 
 
-    // Grid
+    /* Grid */
 
     ctx.strokeStyle =
-    "rgba(255,255,255,0.04)";
+    "rgba(255,255,255,0.035)";
+
 
     for (
         let i = 0;
@@ -487,7 +661,7 @@ function draw() {
     }
 
 
-    // Apple
+    /* Apple */
 
     ctx.font = "18px Arial";
 
@@ -495,35 +669,50 @@ function draw() {
 
     ctx.textBaseline = "middle";
 
+
     ctx.fillText(
+
         "🍎",
+
         apple.x * grid + grid / 2,
+
         apple.y * grid + grid / 2
+
     );
 
 
-    // Snake
+    /* Snake */
 
     snake.forEach(
+
         (part, index) => {
 
             ctx.fillStyle =
             index === 0
-            ? "#6f8cff"
-            : "#4d68c9";
+            ? "#7189ff"
+            : "#5069cf";
+
 
             ctx.fillRect(
+
                 part.x * grid + 1,
+
                 part.y * grid + 1,
+
                 grid - 2,
+
                 grid - 2
+
             );
 
         }
+
     );
 
 }
 
+
+/* Direction */
 
 function changeDirection(newDirection) {
 
@@ -531,39 +720,57 @@ function changeDirection(newDirection) {
 
 
     if (
+
         newDirection === "up" &&
+
         direction !== "down"
+
     )
+
         nextDirection = "up";
 
 
     if (
+
         newDirection === "down" &&
+
         direction !== "up"
+
     )
+
         nextDirection = "down";
 
 
     if (
+
         newDirection === "left" &&
+
         direction !== "right"
+
     )
+
         nextDirection = "left";
 
 
     if (
+
         newDirection === "right" &&
+
         direction !== "left"
+
     )
+
         nextDirection = "right";
 
 }
 
 
-// Keyboard controls
+/* Keyboard */
 
 document.addEventListener(
+
     "keydown",
+
     function(event) {
 
         if (
@@ -575,6 +782,7 @@ document.addEventListener(
 
         }
 
+
         if (
             event.key === "ArrowDown" ||
             event.key.toLowerCase() === "s"
@@ -584,6 +792,7 @@ document.addEventListener(
 
         }
 
+
         if (
             event.key === "ArrowLeft" ||
             event.key.toLowerCase() === "a"
@@ -592,6 +801,7 @@ document.addEventListener(
             changeDirection("left");
 
         }
+
 
         if (
             event.key === "ArrowRight" ||
@@ -603,14 +813,18 @@ document.addEventListener(
         }
 
     }
+
 );
 
+
+/* Game over */
 
 function endGame() {
 
     gameOver = true;
 
     clearInterval(gameLoop);
+
 
     document.getElementById("message")
     .innerText =
@@ -619,11 +833,14 @@ function endGame() {
 }
 
 
+/* Restart */
+
 function restartGame() {
 
     startGame();
 
 }
+
 
 startGame();
 
