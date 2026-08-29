@@ -320,97 +320,126 @@ Question
 const questions = [
 
 {
-q: "What number comes next? 2, 4, 8, 16, ?",
+q: "7 + 8 = ?",
+a: ["14", "15", "16", "17"],
+c: 1
+},
+
+{
+q: "20 - 7 = ?",
+a: ["11", "12", "13", "14"],
+c: 2
+},
+
+{
+q: "6 × 4 = ?",
+a: ["20", "24", "28", "30"],
+c: 1
+},
+
+{
+q: "36 ÷ 6 = ?",
+a: ["5", "6", "7", "8"],
+c: 1
+},
+
+{
+q: "12 + 15 = ?",
+a: ["25", "26", "27", "28"],
+c: 2
+},
+
+{
+q: "50 - 23 = ?",
+a: ["25", "27", "29", "30"],
+c: 1
+},
+
+{
+q: "9 × 7 = ?",
+a: ["54", "63", "72", "81"],
+c: 1
+},
+
+{
+q: "81 ÷ 9 = ?",
+a: ["7", "8", "9", "10"],
+c: 2
+},
+
+{
+q: "5, 10, 15, 20, ?",
+a: ["22", "24", "25", "30"],
+c: 2
+},
+
+{
+q: "2, 4, 8, 16, ?",
 a: ["24", "30", "32", "36"],
 c: 2
 },
 
 {
-q: "What number is missing? 3, 6, 12, 24, ?",
-a: ["36", "42", "48", "52"],
-c: 2
-},
-
-{
-q: "If all BLOPS are ZIPS, and all ZIPS are TAPS, are all BLOPS TAPS?",
-a: ["Yes", "No", "Impossible", "Only sometimes"],
-c: 0
-},
-
-{
-q: "Which one is different?",
-a: ["Circle", "Triangle", "Square", "Rectangle"],
-c: 0
-},
-
-{
-q: "What comes next? 1, 1, 2, 3, 5, 8, ?",
-a: ["11", "12", "13", "15"],
-c: 2
-},
-
-{
-q: "A clock shows 3:00. What is the angle between the hands?",
-a: ["45°", "90°", "120°", "180°"],
+q: "100 ka 25% kitna hai?",
+a: ["20", "25", "30", "40"],
 c: 1
 },
 
 {
-q: "Which number does NOT belong? 2, 4, 8, 16, 31, 32",
-a: ["8", "16", "31", "32"],
-c: 2
-},
-
-{
-q: "If CAT = 3 letters, DOG = 3 letters, ELEPHANT = ?",
-a: ["6", "7", "8", "9"],
-c: 2
-},
-
-{
-q: "What comes next? 100, 90, 70, 40, ?",
-a: ["20", "10", "0", "-10"],
-c: 2
-},
-
-{
-q: "You have 3 boxes. One contains a prize. You choose box 2. Someone tells you box 1 is empty. Should you switch to box 3?",
-a: ["Always", "Never", "It makes no difference", "Cannot tell"],
-c: 2
-},
-
-{
-q: "Which pattern comes next? ▲ ▲ ● ▲ ▲ ● ▲ ▲ ?",
-a: ["▲", "●", "■", "◆"],
-c: 1
-},
-
-{
-q: "If you rearrange the letters in 'LISTEN', you can make:",
-a: ["SILENT", "LITTLE", "LINE", "STONE"],
+q: "10 + 5 × 2 = ?",
+a: ["20", "25", "30", "15"],
 c: 0
 },
 
 {
-q: "What number comes next? 5, 10, 20, 40, ?",
-a: ["60", "70", "80", "100"],
+q: "45 + 15 - 20 = ?",
+a: ["30", "35", "40", "45"],
 c: 2
 },
 
 {
-q: "A person walks north, then turns right, then right again. Which direction are they facing?",
-a: ["North", "South", "East", "West"],
+q: "8 × 8 - 10 = ?",
+a: ["44", "54", "64", "74"],
+c: 2
+},
+
+{
+q: "120 ÷ 10 + 5 = ?",
+a: ["15", "17", "20", "25"],
+c: 0
+},
+
+{
+q: "3, 6, 12, 24, ?",
+a: ["36", "42", "48", "54"],
+c: 2
+},
+
+{
+q: "Ek number me 15 add karne par 40 milta hai. Number kya hai?",
+a: ["20", "25", "30", "35"],
 c: 1
 },
 
 {
-q: "Which number completes the pattern? 4, 9, 16, 25, ?",
-a: ["30", "32", "36", "49"],
+q: "5 apples ki price ₹50 hai. 1 apple ki price kitni hai?",
+a: ["₹5", "₹10", "₹15", "₹20"],
+c: 1
+},
+
+{
+q: "Ek box me 24 chocolates hain. 6 chocolates nikal di. Kitni bachengi?",
+a: ["16", "18", "20", "22"],
+c: 1
+},
+
+{
+q: "15 × 2 + 10 = ?",
+a: ["30", "35", "40", "45"],
 c: 2
 }
 
 ];
-
 let current = 0;
 let score = 0;
 let startTime = 0;
